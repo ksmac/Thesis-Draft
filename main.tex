@@ -1,14 +1,102 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[toc,page]{appendix}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{mathrsfs,amsmath,amssymb}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage[english]{babel}
+\usepackage[labelfont=bf]{caption}
+\usepackage{cancel}
+\usepackage{listings}
+\usepackage{float}
+\usepackage[left=2.2cm, right=2.2cm, top=3cm, bottom=2.5cm]{geometry}
+\usepackage{anyfontsize}
+\usepackage{fancyhdr}
+ 
+\pagestyle{fancy}
+\fancyhf{}
+%\lhead{PHS4100/4200: Literature Review}
+\chead{\rightmark}
+\lfoot{Kenji Macfarlane: 26006480}
+\rfoot{Page \thepage}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
 
-\title{Thesis Draft}
-\author{ksmac3 }
-\date{July 2019}
-
+%\renewcommand{\baselinestretch}{1.2}
+\newcommand{\Lagr}{\mathcal{L}}
+%\iffalse \geometry{
+ %   a4paper,
+  %  left=25mm,
+   % top=25mm,
+%} \fi
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+		\begin{center}
+			\vspace*{2cm}
+			\LARGE
+			\textbf{Thesis: \\
+Signal and background discrimination in the stop production at the Large Hadron Collider using Machine Learning}
+			
+			\vspace{2cm}
+			%\LARGE
+			\textbf{Kenji Macfarlane \\ ID: 26006480}
+			
+			\vspace{0.8cm}
+			\Large
+			\textit{Supervisors:}\\
+			Professor German Valencia \\
+			Dr. Ursula Laa
+			
+			\vfill
+			%\large
+			%A literature review presented for the degree of\\
+			%Bachelor of Science (Honours)
+			
+			\vspace{0.3cm}
+			\includegraphics[width=0.2\linewidth]{monashlogo.png}\\
+			School of Physics and Astronomy\\
+			Faculty of Science\\
+			Monash University\\
+			Australia
+			
+			\vspace{0.5cm}
+			
+			\today
+			
+	\end{center}
+\end{titlepage}
 
+
+
+\begin{abstract}
+\noindent 
+\end{abstract}
+
+%\clearpage
+%-------------------------------------------------------------------------%
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+%-------------------------------------------------------------------------%
+
+
+%-------------------------------------------------------------------------%
+\pagenumbering{arabic}
+\setcounter{page}{1}
 \section{Introduction}
+
+%-------------------------------------------------------------------------%
+%\newpage
+\bibliographystyle{vancouver}
+\bibliography{LiteratureReview}
+
+%-------------------------------------------------------------------------%
+
 
 \end{document}
