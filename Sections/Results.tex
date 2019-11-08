@@ -1,0 +1,21 @@
+%\begin{figure}[h!]
+%    \centering
+%    \includegraphics[width=14cm, height= 7.5cm]{.png}
+%    \caption{}
+%    \label{fig:}
+%\end{figure}
+
+% Confusion matrix template
+\begin{tabular}{l|l|c|c|c}
+\multicolumn{2}{c}{}&\multicolumn{2}{c}{Predicted}&\\
+\cline{3-5}
+\multicolumn{2}{c|}{}&Background &Signal &\multicolumn{1}{c|}{Total}\\
+\cline{2-5}
+\multirow{\items}{*}{\rotatebox{90}{Simulated}}
+&\multicolumn{1}{c|}{Background} & \multicolumn{1}{c|}{$a$} & \multicolumn{1}{c|}{$b$} & \multicolumn{1}{c|}{$a+b$} \\
+\cline{2-5}
+\multicolumn{1}{c|}{}& \multicolumn{1}{c|}{Signal} & \multicolumn{1}{c|}{$c$} & \multicolumn{1}{c|}{$d$} & \multicolumn{1}{c|}{$c+d$} \\
+\cline{2-5}
+\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{Total} & \multicolumn{1}{c|}{$a+c$} & \multicolumn{1}{c|}{$b+d$} & \multicolumn{1}{c|}{$N$}\\
+\cline{2-5}
+\end{tabular}

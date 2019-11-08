@@ -1,100 +1,170 @@
-\documentclass[12pt]{article}
-\usepackage[utf8]{inputenc}
+\documentclass[12pt,a4paper]{report}
+\usepackage{graphicx}
+\usepackage[letterpaper, portrait, margin= 2.5cm]{geometry}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{url}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{sectsty}
+\usepackage[square,numbers]{natbib}
+\usepackage[Conny]{fncychap}
+\usepackage{lipsum}
 \usepackage[toc,page]{appendix}
 \usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{mathrsfs,amsmath,amssymb}
 \usepackage{physics}
-\usepackage{graphicx}
-\usepackage{subcaption}
-\usepackage{xcolor}
 \usepackage[english]{babel}
-\usepackage[labelfont=bf]{caption}
 \usepackage{cancel}
 \usepackage{listings}
-\usepackage{float}
-\usepackage[left=2.2cm, right=2.2cm, top=3cm, bottom=2.5cm]{geometry}
 \usepackage{anyfontsize}
-\usepackage{fancyhdr}
- 
-\pagestyle{fancy}
-\fancyhf{}
-%\lhead{PHS4100/4200: Literature Review}
-\chead{\rightmark}
-\lfoot{Kenji Macfarlane: 26006480}
-\rfoot{Page \thepage}
-\renewcommand{\headrulewidth}{2pt}
-\renewcommand{\footrulewidth}{1pt}
-
-%\renewcommand{\baselinestretch}{1.2}
 \newcommand{\Lagr}{\mathcal{L}}
-%\iffalse \geometry{
- %   a4paper,
-  %  left=25mm,
-   % top=25mm,
-%} \fi
+\graphicspath{{images/}}
+\usepackage{collcell}
+\usepackage{hhline}
+\usepackage{pgf}
+\usepackage{colortbl}
+\usepackage{tabu}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{pifont}
+\newcommand\items{3}
+\newcommand*\rot{\rotatebox{90}}
+
+\ChTitleVar{\centering\Huge\scshape\color{RoyalBlue}}
+\ChNameVar{\centering\Huge\fontfamily{pbk}\selectfont\scshape\color{RoyalBlue}}
+
+\makeatletter
+\renewcommand{\DOCH}{%
+	\color{ForestGreen}\mghrulefill{3\RW}\par\nobreak
+	\vskip -0.5\baselineskip
+	\mghrulefill{\RW}\par\nobreak
+	\CNV\FmN{\@chapapp}\space \CNoV\thechapter
+	\par\nobreak
+	\vskip -0.5\baselineskip
+}
+\makeatother
+
+
+
 \begin{document}
 
 \begin{titlepage}
-		\begin{center}
-			\vspace*{2cm}
-			\LARGE
-			\textbf{Thesis: \\
-Signal and background discrimination in the stop production at the Large Hadron Collider using Machine Learning}
-			
-			\vspace{2cm}
-			%\LARGE
-			\textbf{Kenji Macfarlane \\ ID: 26006480}
-			
-			\vspace{0.8cm}
-			\Large
-			\textit{Supervisors:}\\
-			Professor German Valencia \\
-			Dr. Ursula Laa
-			
-			\vfill
-			%\large
-			%A literature review presented for the degree of\\
-			%Bachelor of Science (Honours)
-			
-			\vspace{0.3cm}
-			\includegraphics[width=0.2\linewidth]{monashlogo.png}\\
-			School of Physics and Astronomy\\
-			Faculty of Science\\
-			Monash University\\
-			Australia
-			
-			\vspace{0.5cm}
-			
-			\today
-			
-	\end{center}
+
+
+				\centering
+				
+%				{\scshape\LARGE Monash University \par}
+%				\includegraphics[width=0.3\textwidth]{monash.pdf}\par\vspace{1cm}
+				
+%				{\scshape\Large \par}
+				\vspace*{\stretch{1}}
+				{\huge\fontfamily{pbk}\selectfont Signal and background discrimination in the top squark production at the Large Hadron Collider using Machine Learning \par}
+				\vspace{1.0cm}
+				%\includegraphics[width=0.75\textwidth]{title.png}\par\vspace{1cm}
+				\vspace{1cm}
+				{\Large\itshape Kenji Sato Macfarlane\par}
+				\vfill
+				Supervised by:\par
+				Dr. Ursula Laa \\ Professor German Valencia 
+				
+				\vfill
+				\includegraphics[width=0.3\textwidth]{monashlogo.png}\par\vspace{1cm}
+				
+				{\large \today\par}
+
 \end{titlepage}
-
-
-
-\begin{abstract}
-\noindent 
-\end{abstract}
-
-%\clearpage
 %-------------------------------------------------------------------------%
 \pagenumbering{Roman}
 \setcounter{page}{1}
+
+\begin{center}
+    \vspace*{\stretch{1}}
+    \textit{I would like to dedicate this thesis to my loving family and parents, especially my father who is sadly no longer with us.}
+    \vspace*{\stretch{1}}
+\end{center}
+\clearpage
+
+\begin{center}
+    \vspace*{\stretch{1}}
+    \section*{\centering \Huge Acknowledgement}
+    I would like to 
+    \vspace*{\stretch{1}}
+\end{center}
+
+
+\begin{center}
+    \vspace*{\stretch{1}}
+    \begin{abstract}
+    \noindent 
+    \end{abstract}
+    \vspace*{\stretch{1}}
+\end{center}
+
+\clearpage
+
+%-------------------------------------------------------------------------%
 \tableofcontents
+\clearpage
+%-------------------------------------------------------------------------%
+
+%-------------------------------------------------------------------------%
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%---------------------------------------------------------------------------%
+\chapter{Introduction}
+\input{Sections/Introduction.tex}
+
+
+%-------------------------------------------------------------------------%
+\chapter{The Standard Model and Beyond}
+%\section{The Standard Model and Beyond}
+\input{Sections/SM&BSM.tex}
+
+%-------------------------------------------------------------------------%
+\chapter{The top squark and its production}
+%\section{The stop ($ \Tilde{t} $) and its production}
+\input{Sections/Stops.tex}
+
+%-------------------------------------------------------------------------%
+\chapter{Methods to search for MSSM}
+%\section{Methods to search for MSSM}
+\input{Sections/Search_Methods.tex}
+
+%-------------------------------------------------------------------------%
+\chapter{Event generation - from the collision to detection}
+%\section{Event generation - from the collision to detection}
+\input{Sections/Simulations.tex}
+
+
+
+%-------------------------------------------------------------------------%
+\chapter{Discriminating background and signals with machine learning}
+%\section{Discriminating background and signals with machine learning}
+\input{Sections/Chosen_Method.tex}
+
+%-------------------------------------------------------------------------%
+\chapter{Results}
+%\section{Results}
+\input{Sections/Results.tex}
+
+
+%-------------------------------------------------------------------------%
+\chapter{Conclusion}
+%\section{Conclusion}
+
+
 \clearpage
 %-------------------------------------------------------------------------%
 
 
 %-------------------------------------------------------------------------%
-\pagenumbering{arabic}
-\setcounter{page}{1}
-\section{Introduction}
-
-%-------------------------------------------------------------------------%
 %\newpage
 \bibliographystyle{vancouver}
-\bibliography{LiteratureReview}
+\bibliography{Thesis}
 
 %-------------------------------------------------------------------------%
 
