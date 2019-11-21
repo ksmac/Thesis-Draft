@@ -5,17 +5,158 @@
 %    \label{fig:}
 %\end{figure}
 
-% Confusion matrix template
-\begin{tabular}{l|l|c|c|c}
-\multicolumn{2}{c}{}&\multicolumn{2}{c}{Predicted}&\\
-\cline{3-5}
-\multicolumn{2}{c|}{}&Background &Signal &\multicolumn{1}{c|}{Total}\\
-\cline{2-5}
-\multirow{\items}{*}{\rotatebox{90}{Simulated}}
-&\multicolumn{1}{c|}{Background} & \multicolumn{1}{c|}{$a$} & \multicolumn{1}{c|}{$b$} & \multicolumn{1}{c|}{$a+b$} \\
-\cline{2-5}
-\multicolumn{1}{c|}{}& \multicolumn{1}{c|}{Signal} & \multicolumn{1}{c|}{$c$} & \multicolumn{1}{c|}{$d$} & \multicolumn{1}{c|}{$c+d$} \\
-\cline{2-5}
-\multicolumn{1}{c|}{} & \multicolumn{1}{c|}{Total} & \multicolumn{1}{c|}{$a+c$} & \multicolumn{1}{c|}{$b+d$} & \multicolumn{1}{c|}{$N$}\\
-\cline{2-5}
-\end{tabular}
+%-------------------------------------------------------------------------%
+\section{Performance of the classifiers}
+%-------------------------------------------------------------------------%
+%\subsection{Benchmark 1: \texorpdfstring{$\Tilde{t} = 1.2$}{ } TeV and \texorpdfstring{$\Tilde{\chi}_1^0 = 600$}{ } GeV}
+An initial measure to visually understand how our classifiers have performed, a simple Receiver operating characteristic (ROC) curve can be constructed. A ROC curve shows the distribution of the predicted values given between 0 and 1, as a function of FP rate versus TP rate. This allows us to understand how much error we are willing to accept/reject for a given model. The ROC curve produced for all four benchmark data is presented in Figure \ref{fig:ROC}. It is not surprising that the benchmark point inside the exclusiong curve performed the worst amongst the four datasets. What is surprising, however, is that the third benchmark set which has the closest mass parameters to the fourth benchmark set performed the best although by a narrow margin. This indicates that a lighter $\Tilde{\chi}_1^0$ is favorable over heavier ones, though it is not conclusive due to the high performance of the other classifiers. \\
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{ROC_curve.png}
+    \caption{ROC curve for all 4 benchmark points.}
+    \label{fig:ROC}
+\end{figure} 
+
+Although the Area-under-the-curve (AUC) value is given in Figure \ref{fig:ROC}, it is maximized and does not directly represent the accuracy of our models. The accuracy of our models can be obtained by setting a cut-off to our predictions i.e. a number between 0 and 1. The closer the value is to 1 the lower the accuracy, but deliberately obtaining a high accuracy by setting a smaller value is also conter-intuitive as the Signal-to-Noise Ratio (SNR) will be smaller. Through various trials in cut-off values, it was determined for all four datasets that 0.6 is the optimal value to satisfy both high accuracy and high SNR. \\
+
+For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, the classifier performed quite well, producing a result of above $90\%$ accuracy. It is expected that the classifier performed less accurately when dealing with signal-like events. It correctly identified a smaller portion of true signal events and incorrectly classified more signal-like background events, as seen in Table \ref{tab:Values1}. The number of expected number of signal is significantly less than the expected number of background, producing an AMS value of 1.73, indicating that the classifier is trained and modelled well. \\
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}[htbp]{0.65\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bm1_distribution.png}
+    \captionof{figure}{Distribution plot for predicted values.}
+    \label{fig:dist_bm1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[htbp]{0.34\textwidth}
+        \centering
+        \begin{tabular}{c|c} 
+        \toprule
+        Metric & Proportion \\
+        \midrule
+        \rowcolor{gray!6} TP & $43.9 \%$ \\
+        TN & $48.4 \%$ \\
+        \rowcolor{gray!6} FP & $6.2 \%$\\
+        FN & $1.5 \%$ \\
+        \rowcolor{gray!6} Accuracy & $92.3 \pm 0.2 \%$ \\
+        SNR & $90.7 \%$ \\
+        \midrule
+        \rowcolor{gray!6} $\text{N}_\text{B}$ & $4328$ \\
+        $\text{N}_\text{S}$ & $3$ \\
+        \rowcolor{gray!6} AMS & $1.73$ \\
+        \bottomrule
+        \end{tabular}
+        \captionof{table}{Proportion of values of interest.} 
+        \label{tab:Values1}
+    \end{minipage}
+\end{minipage}
+%-------------------------------------------------------------------------%
+%\subsection{Benchmark 2: \texorpdfstring{$\Tilde{t} = 1.225$}{ } TeV and \texorpdfstring{$\Tilde{\chi}_1^0 = 400$}{ } GeV}
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}[htbp]{0.65\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bm2_distribution.png}
+    \captionof{figure}{Distribution plot for predicted values.}
+    \label{fig:dist_bm2}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[htbp]{0.34\textwidth}
+        \centering
+        \begin{tabular}{c|c} 
+        \toprule
+        Metric & Proportion \\
+        \midrule
+        \rowcolor{gray!6} TP & $45.3 \%$ \\
+        TN & $48.8 \%$ \\
+        \rowcolor{gray!6} FP & $4.7 \%$\\
+        FN & $1.2 \%$ \\
+        \rowcolor{gray!6} Accuracy & $94.1 \pm 0.2 \%$ \\
+        SNR & $92.8 \%$ \\
+        \midrule
+        \rowcolor{gray!6} $\text{N}_\text{B}$ & $3250$ \\
+        $\text{N}_\text{S}$ & $48$ \\
+        \rowcolor{gray!6} AMS & $6.98$ \\
+        \bottomrule
+        \end{tabular}
+        \captionof{table}{Proportion of values of interest.} 
+        \label{tab:Values2}
+    \end{minipage}
+\end{minipage}
+%-------------------------------------------------------------------------%
+%\subsection{Benchmark 3: \texorpdfstring{$\Tilde{t} = 1.25$}{ } TeV and \texorpdfstring{$\Tilde{\chi}_1^0 = 100$}{ } GeV}
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}[htbp]{0.65\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bm3_distribution.png}
+    \captionof{figure}{Distribution plot for predicted values.}
+    \label{fig:dist_bm3}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[htbp]{0.34\textwidth}
+        \centering
+        \begin{tabular}{c|c} 
+        \toprule
+        Metric & Proportion \\
+        \midrule
+        \rowcolor{gray!6} TP & $46.1 \%$ \\
+        TN & $48.8 \%$ \\
+        \rowcolor{gray!6} FP & $4.0 \%$\\
+        FN & $1.1 \%$ \\
+        \rowcolor{gray!6} Accuracy & $94.9 \pm 0.2 \%$ \\
+        SNR & $94.5 \%$ \\
+        \midrule
+        \rowcolor{gray!6} $\text{N}_\text{B}$ & $2797$ \\
+        $\text{N}_\text{S}$ & $11$ \\
+        \rowcolor{gray!6} AMS & $3.32$ \\
+        \bottomrule
+        \end{tabular}
+        \captionof{table}{Proportion of values of interest.} 
+        \label{tab:Values3}
+    \end{minipage}
+\end{minipage}
+
+%-------------------------------------------------------------------------%
+%\subsection{Benchmark 4: \texorpdfstring{$\Tilde{t} = 750$}{ } GeV and \texorpdfstring{$\Tilde{\chi}_1^0 = 1$}{ } GeV}
+
+\begin{minipage}{\textwidth}
+  \begin{minipage}[htbp]{0.65\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{bm_In_distribution.png}
+    \captionof{figure}{Distribution plot for predicted values.}
+    \label{fig:dist_bm_in}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[htbp]{0.34\textwidth}
+        \centering
+        \begin{tabular}{c|c} 
+        \toprule
+        Metric & Proportion \\
+        \midrule
+        \rowcolor{gray!6} TP & $41.7 \%$ \\
+        TN & $48.5 \%$ \\
+        \rowcolor{gray!6} FP & $8.2 \%$\\
+        FN & $1.6 \%$ \\
+        \rowcolor{gray!6} Accuracy & $90.2 \pm 0.2 \%$ \\
+        SNR & $86.0 \%$ \\
+        \midrule
+        \rowcolor{gray!6} $\text{N}_\text{B}$ & $5727$ \\
+        $\text{N}_\text{S}$ & $57$ \\
+        \rowcolor{gray!6} AMS & $7.59$ \\
+        \bottomrule
+        \end{tabular}
+        \captionof{table}{Proportion of values of interest.} 
+        \label{tab:Values_in}
+    \end{minipage}
+\end{minipage}
+
+%-------------------------------------------------------------------------%
+\section{Data Visualisation using \textit{tourr}}
+
+In this section, I would like to show how data visualisation could be useful in helping understand new physics beyond the SM better. By creating a two-dimensional projection of the data entailing of higher dimensions (i.e. many variables), we can observe the distribution of data points in such a projection. The \textit{tourr} package from R is an ideal program for such a task, producing interesting results. 
+
+
