@@ -14,16 +14,17 @@ An initial measure to visually understand how our classifiers have performed, a 
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\linewidth]{ROC_curve.png}
+    \includegraphics[width=0.4\linewidth]{ROC_curve.png}
     \caption{ROC curve for all 4 benchmark points.}
     \label{fig:ROC}
 \end{figure} 
 
 Although the Area-under-the-curve (AUC) value is given in Figure \ref{fig:ROC}, it is maximized and does not directly represent the accuracy of our models. The accuracy of our models can be obtained by setting a cut-off to our predictions i.e. a number between 0 and 1. The closer the value is to 1 the lower the accuracy, but deliberately obtaining a high accuracy by setting a smaller value is also conter-intuitive as the Signal-to-Noise Ratio (SNR) will be smaller. Through various trials in cut-off values, it was determined for all four datasets that 0.6 is the optimal value to satisfy both high accuracy and high SNR. \\
 
-For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, the classifier performed quite well, producing a result of above $90\%$ accuracy. It is expected that the classifier performed less accurately when dealing with signal-like events. It correctly identified a smaller portion of true signal events and incorrectly classified more signal-like background events, as seen in Table \ref{tab:Values1}. The number of expected number of signal is significantly less than the expected number of background, producing an AMS value of 1.73, indicating that the classifier is trained and modelled well. \\
+For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, the classifier performed quite well, producing a result of above $90\%$ accuracy. It is expected that the classifier performed less accurately when dealing with signal-like events. It correctly identified a smaller portion of true signal events and incorrectly classified more signal-like background events, as seen in Table \ref{tab:Values1}. The number of expected number of signal is significantly less than the expected number of background, producing an AMS value of 0.046. Considering the definition of AMS given in Section \ref{sec:metrics}, it supports the exclusion limit in Figure \ref{fig:limits}. \\
 
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
+\centering
   \begin{minipage}[htbp]{0.65\textwidth}
     \centering
     \includegraphics[width=\linewidth]{bm1_distribution.png}
@@ -42,21 +43,22 @@ For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, 
         \rowcolor{gray!6} FP & $6.2 \%$\\
         FN & $1.5 \%$ \\
         \rowcolor{gray!6} Accuracy & $92.3 \pm 0.2 \%$ \\
-        SNR & $90.7 \%$ \\
         \midrule
-        \rowcolor{gray!6} $\text{N}_\text{B}$ & $4328$ \\
-        $\text{N}_\text{S}$ & $3$ \\
-        \rowcolor{gray!6} AMS & $1.73$ \\
+        $b$ & $4328$ \\
+        \rowcolor{gray!6} $s$ & $3$ \\
+        SBR & $0.07\%$\\
+        \rowcolor{gray!6} AMS & $0.046$ \\
         \bottomrule
         \end{tabular}
-        \captionof{table}{Proportion of values of interest.} 
+        \captionof{table}{Values for parameter $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV.} 
         \label{tab:Values1}
     \end{minipage}
 \end{minipage}
 %-------------------------------------------------------------------------%
 %\subsection{Benchmark 2: \texorpdfstring{$\Tilde{t} = 1.225$}{ } TeV and \texorpdfstring{$\Tilde{\chi}_1^0 = 400$}{ } GeV}
 
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
+\centering
   \begin{minipage}[htbp]{0.65\textwidth}
     \centering
     \includegraphics[width=\linewidth]{bm2_distribution.png}
@@ -75,11 +77,11 @@ For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, 
         \rowcolor{gray!6} FP & $4.7 \%$\\
         FN & $1.2 \%$ \\
         \rowcolor{gray!6} Accuracy & $94.1 \pm 0.2 \%$ \\
-        SNR & $92.8 \%$ \\
         \midrule
-        \rowcolor{gray!6} $\text{N}_\text{B}$ & $3250$ \\
-        $\text{N}_\text{S}$ & $48$ \\
-        \rowcolor{gray!6} AMS & $6.98$ \\
+        $b$ & $3250$ \\
+        \rowcolor{gray!6} $s$ & $48$ \\
+        SBR & $1.5\%$\\
+        \rowcolor{gray!6} AMS & $0.84$ \\
         \bottomrule
         \end{tabular}
         \captionof{table}{Proportion of values of interest.} 
@@ -89,7 +91,8 @@ For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, 
 %-------------------------------------------------------------------------%
 %\subsection{Benchmark 3: \texorpdfstring{$\Tilde{t} = 1.25$}{ } TeV and \texorpdfstring{$\Tilde{\chi}_1^0 = 100$}{ } GeV}
 
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
+\centering
   \begin{minipage}[htbp]{0.65\textwidth}
     \centering
     \includegraphics[width=\linewidth]{bm3_distribution.png}
@@ -108,11 +111,11 @@ For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, 
         \rowcolor{gray!6} FP & $4.0 \%$\\
         FN & $1.1 \%$ \\
         \rowcolor{gray!6} Accuracy & $94.9 \pm 0.2 \%$ \\
-        SNR & $94.5 \%$ \\
         \midrule
-        \rowcolor{gray!6} $\text{N}_\text{B}$ & $2797$ \\
-        $\text{N}_\text{S}$ & $11$ \\
-        \rowcolor{gray!6} AMS & $3.32$ \\
+        $b$ & $2798$ \\
+        \rowcolor{gray!6} $s$ & $11$ \\
+        SBR & $0.4\%$\\
+        \rowcolor{gray!6} AMS & $0.21$ \\
         \bottomrule
         \end{tabular}
         \captionof{table}{Proportion of values of interest.} 
@@ -123,7 +126,8 @@ For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, 
 %-------------------------------------------------------------------------%
 %\subsection{Benchmark 4: \texorpdfstring{$\Tilde{t} = 750$}{ } GeV and \texorpdfstring{$\Tilde{\chi}_1^0 = 1$}{ } GeV}
 
-\begin{minipage}{\textwidth}
+\noindent\begin{minipage}{\textwidth}
+\centering
   \begin{minipage}[htbp]{0.65\textwidth}
     \centering
     \includegraphics[width=\linewidth]{bm_In_distribution.png}
@@ -142,11 +146,11 @@ For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, 
         \rowcolor{gray!6} FP & $8.2 \%$\\
         FN & $1.6 \%$ \\
         \rowcolor{gray!6} Accuracy & $90.2 \pm 0.2 \%$ \\
-        SNR & $86.0 \%$ \\
         \midrule
-        \rowcolor{gray!6} $\text{N}_\text{B}$ & $5727$ \\
-        $\text{N}_\text{S}$ & $57$ \\
-        \rowcolor{gray!6} AMS & $7.59$ \\
+        $b$ & $5727$ \\
+        \rowcolor{gray!6} $s$ & $57$ \\
+        SBR & $1\%$\\
+        \rowcolor{gray!6} AMS & $0.75$ \\
         \bottomrule
         \end{tabular}
         \captionof{table}{Proportion of values of interest.} 
@@ -154,9 +158,38 @@ For the benchmark point $\Tilde{t} = 1.2$ TeV and $\Tilde{\chi}_1^0 = 600$ GeV, 
     \end{minipage}
 \end{minipage}
 
+The AMS value of 0.75 obtained by this benchmark is less than but close to the value found by Roxlo and Reece \cite{roxlo2018opening} which was 1.72. This is a reassuring result, as the exclusion limit shows that indeed this point is unlikely to be the mass parameters for both the stop and the neutralino.
+
+The result of the values may suggest that these regions will be soon excluded by the collider experiments???
 %-------------------------------------------------------------------------%
 \section{Data Visualisation using \textit{tourr}}
 
-In this section, I would like to show how data visualisation could be useful in helping understand new physics beyond the SM better. By creating a two-dimensional projection of the data entailing of higher dimensions (i.e. many variables), we can observe the distribution of data points in such a projection. The \textit{tourr} package from R is an ideal program for such a task, producing interesting results. 
+In this section, I would like to show how data visualisation could be useful in helping understand new physics beyond the SM better. By creating a two-dimensional projection of the data entailing of higher dimensions (i.e. many variables), we can observe the distribution of data points in such a projection. The \textit{tourr} package from R \cite{tourr} is an ideal program for such a task, producing interesting results. The projected tour requires an index to minimize the distance between certain points in a dataset, in which we chose to utilize the \textit{alpha-hull} index. A corresponding basis is generated with each projection, and the algorithm will search through potentially more optimal projections through each iteration. NEED TO EXPLAIN ABOUT ALPHA INDEX A BIT AND SHOW SOME SPLOTS AND TALK ABOUT THE PHYSICS WE CAN INTERPRET FROM IT.
 
 
+  \begin{table}[htbp]
+        \centering
+        \begin{tabular}{c||c|c|c|c}
+        \toprule
+        &\multicolumn{1}{c|}{\bfseries Benchmark1}  &
+        \multicolumn{1}{c|}{\bfseries Benchmark2}  &
+        \multicolumn{1}{c|}{\bfseries Benchmark3} &
+        \multicolumn{1}{c}{\bfseries Benchmark4} \\
+        \midrule
+        %----------------------------------%
+        \textbf{Metric} & Proportion & Proportion & Proportion & Proportion \\
+        \midrule
+        \rowcolor{gray!6} TP & $42.0 \%$ & $43.8 \%$ & $44.9 \%$ & $39.3 \%$ \\
+        TN & $49.4 \%$ & $49.5 \%$ & $49.4 \%$ & $49.5 \%$ \\
+        \rowcolor{gray!6} FP & $0.6 \%$ & $0.5 \%$ & $0.6 \%$ & $0.5 \%$\\
+        FN & $8.0 \%$ & $6.2 \%$ & $5.1 \%$ & $10.7 \%$ \\
+        \rowcolor{gray!6} Accuracy & $91.3 \pm 0.2 \%$ & $93.3 \pm 0.2 \%$ & $94.2 \pm 0.2 \%$ & $88.8 \pm 0.2 \%$ \\
+        \midrule
+        $b$ & $403$ & $368$ & $371$ & $382$ \\
+        \rowcolor{gray!6} $s$ & $2$ & $46$ & $11$ & $53$ \\
+        SBR & $0.5\%$ & $12.5\%$ & $3.0\%$ & $13.9\%$\\
+        \rowcolor{gray!6} AMS & $0.098$ & $2.32$ & $0.56$ & $2.62$ \\
+        \bottomrule
+        \end{tabular}
+        \caption*{Proportion of important values obtained in the four benchmark parameters.}
+    \end{table}

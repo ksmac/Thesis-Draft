@@ -13,17 +13,17 @@ Upon building a classifier, it is difficult to find the most optimal parameters 
 
 Fine-tuning parameters is not the only effective method to improve the classifier. A common technique known as \textit{feature engineering} can be employed to manipulate the existing variables so that the prediction accuracy improves across the models built, although not guaranteed. In this work, a simple feature engineering was performed. This entailed of rearranging the four jet entries such that the highest $p_T$ jet with a b-tag is considered the b-jet originating from the decay, and the subsequent jets are ordered by the $p_T$ values regardless of whether there is a b-tag or not. \\
 
-The most popular algorithms employed by the scientific community (not limited to physics) are Neural Networks (NNs) and Decision Trees (DTs). In the correct setting, either methods perform exceptionally well. The trend in many communities favour NNs over DTs. However, through some preliminary tests using the \textit{h2o} package's \textit{automl} function, it was shown that a tree-based method known as \textit{Extreme Gradient Boosting (EGB)} is most suited for this task. The package that contains this feature is known as \textit{xgboost}, both available as a standalone use or an extension of the h2o package. \\
+The most popular algorithms employed by the scientific community (not limited to physics) are Neural Networks (NNs) and Decision Trees (DTs). In the correct setting, either methods perform exceptionally well. The trend in many communities favour NNs over DTs. However, through some preliminary tests using the \textit{h2o} package's \cite{h2o} \textit{automl} function, it was shown that a tree-based method known as \textit{Extreme Gradient Boosting (EGB)} is most suited for this task. The package that contains this feature is known as \textit{xgboost} , both available as a standalone use \cite{xgboost} or an extension of the h2o package \cite{h2o}. \\
 
 %-------------------------------------------------------------------------%
 \section{Tree-based methods and Extreme Gradient Boosting}
-
-Tree-based methods can intuitively be thought of as an extension to a cut-flow analysis. Instead of discarding selections that do not fulfill a certain criteria, these selections may be further explored upon by the algorithm provided that a new criteria exists. A simple diagram is depicted in Figure \ref{fig:tree}, where the mathematical form of it is described in Equation \ref{eq:DT}. Here, $c_m$ is the ..............
+\label{sec:method}
+Tree-based methods can intuitively be thought of as an extension to a cut-flow analysis\footnote{Cut-flow analysis is a traditional technique employed to reduce background events according to various physically motivated criteria. The final result gives a maximized Signal-to-Noise ratio.}. Instead of discarding selections that do not fulfill a certain criteria, these selections may be further explored upon by the algorithm provided that a new criteria exists. However, there is no known method to extract any `physical' criteria from such splits, as these splits are performed by minimizing a chosen loss-function. A simple diagram is depicted in Figure \ref{fig:tree}, where the mathematical form of a regression tree is described in Equation \ref{eq:DT}. Here, $c_m$ is the coefficient associated to the partition of the data, $R_m$ \cite{james2013introduction}.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=10cm, height= 6cm]{DT.png}
-    \caption{A simple decision tree for a hypothetical signal selection, expanding on Figure \ref{fig:cut} such that an extra parameter $g(x,y)$ is present within the algorithm.}
+    \caption{A simple decision tree for a hypothetical signal selection such that an extra parameter $g(x,y)$ is present within the algorithm.}
     \label{fig:tree}
 \end{figure}
 
@@ -32,8 +32,11 @@ Tree-based methods can intuitively be thought of as an extension to a cut-flow a
     \label{eq:DT}
 \end{equation}
 
-There are many tree-based methods such as random forests, where the method of sampling the data and how a loss-function is minimized. In the case of EGB models, WRITE MORE ABOUT XGBOOST \\
+There are many tree-based methods that vary in the data sampling method and how a loss-function is minimized. In the case of EGB models, it is an extension to the \textit{Gradient Boosted Machine (GBM)} developed by Jerome Friedman \cite{friedman2001greedy}. \textit{Boosting} is an iterative algorithm in which an ensemble of weak models\footnote{A weak model consists of a small decision tree that is not an effective approximation to the data of interest.} are built sequentially, correcting its previous model through re-weighting. This leads to a final model that is highly representative of our data. Gradient boosting, extends this idea such that a differentialble loss-function's gradient (known as gradient descent) allows the errors to reduce locally, until the error is as close to zero as possible. EGB/XGBoost adds to the features of regular GBMs with weighted quantile splittings and its ability to manage sparse\footnote{Since there are no missing entries in this project, the data is not sparse, or rather, it is `dense'.} data, incorporating parallel computing to achieve faster computation time compared to regular GBM algorithms \cite{chen2016xgboost}. Regularization, a method to avoid overfitting, is also available by adding penalty terms to the loss-fucntion, making its predictive power more reliable. \\
 
+%-------------------------------------------------------------------------%
+\section{Metrics for model performance}
+\label{sec:metrics}
 The performance of a classifier can be boiled down a single table known as a confusion matrix. Displayed in Table \ref{tab:ConfMat}, a confusion matrix visually shows the distribution of correctly and incorrectly classified points within the dataset. The correctly classified signal and background events are the True Positives (TP) and True Negatives (TN), respectively. Likewise, the incorrectly classified signal and background events are the False Negatives (FN) and False Positive (FP), respectively. The accuracy of the classifier is given by TP+TN/N, and the higher the accuracy, the higher the SBR. \\
 
 % Confusion matrix template
@@ -53,16 +56,28 @@ The performance of a classifier can be boiled down a single table known as a con
         \multicolumn{1}{c|[2pt]}{} & \multicolumn{1}{c|[2pt]}{Total} & \multicolumn{1}{c|}{TN$+$FN} & \multicolumn{1}{c|[2pt]}{FP$+$TP} & \multicolumn{1}{c|[2pt]}{N}\\
         \tabucline[2pt]{2-5}
     \end{tabu}
-    \caption{A confusion matrix for truth (simulated) and predicted labels and its components.}
+    \caption{A confusion matrix for truth (simulated) and predicted labels and its components. The diagonal components are the correctly classified background (TN) and signal (TP) events. The off-diagonal components are the mis-classified background (FP) and signal (FN) events. }
     \label{tab:ConfMat}
 \end{table}
 
-An evaluation metric presented by the Higgs Challenge \cite{adam-bourdarios_learning_2014} is the \textit{approximate median significance (AMS)}, given by the equation
+An evaluation metric presented by the Higgs Challenge \cite{adam-bourdarios_learning_2014} is the \textit{approximate median significance (AMS)}, given by Equation \ref{eq:AMS}
 \begin{equation}
     \text{AMS} = \sqrt{2\Big((s+b+b_r)\ln\Big(1+\frac{s}{b+b_r}\Big)\Big)}
     \label{eq:AMS}
 \end{equation}
-where $s$ and $b$ are the unnormalized TP and FP rates, respectively, and $b_r$ is a constant regularization term set at 10.
+where $s$ and $b$ are the unnormalized TP and FP rates, respectively, and $b_r$ is a constant regularization term set at 10. This measure is a derivation of the significance Z given by Equation (\ref{eq:Z})
+\begin{equation}
+    \text{Z} = \sqrt{2\Big( n\ln\Big(\frac{n}{\mu_b}\Big)-n+\mu_b\Big)}
+    \label{eq:Z}
+\end{equation}
+where $n$ is the number of events and $\mu_b$ is the mean of the background, requiring that $n>\mu_b$. The values $n$ and $\mu_b$ are replaced by $s+b$ and $b$ in Equation (\ref{eq:AMS}), respectively. Traditionally, the Z significane at $Z=5$ corresponds to a $p$-value of less than $2.9\times10^{-7}$, sufficient to claim a discovery \cite{adam-bourdarios_learning_2014}. However, the regularization term $b_r$ is equal to zero in this setting, thus differing this significance of values given by either equations. \\
+
+In order to obtain $s$ and $b$, we follow Equation \ref{eq:N}
+\begin{equation}
+    s(b) = N_{s(b)}\times \epsilon_{s(b)} 
+    \label{eq:N}
+\end{equation}
+where $N_{s(b)} = \sigma \int L(t) dt = \sigma \times 137$ \cite{thomson2013modern} is the number of expected events, and $\epsilon=\frac{\text{FP}}{\text{N}}$ is the efficiency of the classifier given a dataset of size N, where in our case, would be a third of each dataset partitioned as our test set.  
 %-------------------------------------------------------------------------%
 %\section{}
 
