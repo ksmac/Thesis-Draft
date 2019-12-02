@@ -15,6 +15,7 @@
 \usepackage{hyperref}
 \usepackage{multirow}
 \usepackage{mathrsfs,amsmath,amssymb}
+\usepackage{esvect}
 \usepackage{physics}
 \usepackage[english]{babel}
 \usepackage{cancel}
@@ -106,6 +107,23 @@
 \clearpage
 
 %-------------------------------------------------------------------------%
+\makeatletter
+\renewcommand\tableofcontents{%
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+   \newgeometry{top=1.8cm, bottom=1.8cm, left=2cm, right=2cm}
+    \chapter*{\contentsname
+        \@mkboth{%
+           \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
+    \restoregeometry
+    }
+\makeatother
+
 \tableofcontents
 \clearpage
 
@@ -131,21 +149,25 @@
 
 %-------------------------------------------------------------------------%
 \chapter{The Standard Model and Beyond}
+\label{chap:2}
 %\section{The Standard Model and Beyond}
-\input{Sections/SM&BSM.tex}
+\input{Sections/SMandBSM.tex}
 
 %-------------------------------------------------------------------------%
 \chapter{The top squark and its production}
+\label{chap:3}
 %\section{The stop ($ \Tilde{t} $) and its production}
 \input{Sections/Stops.tex}
 
 %-------------------------------------------------------------------------%
 \chapter{Methods to search for MSSM}
+\label{chap:4}
 %\section{Methods to search for MSSM}
 \input{Sections/Search_Methods.tex}
 
 %-------------------------------------------------------------------------%
 \chapter{Event generation - from pp collision to detection}
+\label{chap:5}
 %\section{Event generation - from the collision to detection}
 \input{Sections/Simulations.tex}
 
@@ -153,17 +175,19 @@
 
 %-------------------------------------------------------------------------%
 \chapter{Discriminating background and signal in the search regions}
+\label{chap:6}
 %\section{Discriminating background and signals with machine learning}
 \input{Sections/Chosen_Method.tex}
 
 %-------------------------------------------------------------------------%
 \chapter{Observing the physics of our models}
+\label{chap:7}
 %\section{Results}
 \input{Sections/Results.tex}
 
 
 %-------------------------------------------------------------------------%
-\chapter{Conclusion}
+\chapter{Concluding Remarks}
 %\section{Conclusion}
 
 

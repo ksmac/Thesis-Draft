@@ -1,12 +1,12 @@
 %In this section, the method chosen to perform simulations for both the top and stop decays are shown. In addition, the preparation of data is explained in order to jusitfy the usage of ML and their results.\\
 %-------------------------------------------------------------------------%
 \section{Background and Signal of interest}
-As discussed in Section \ref{sec:Sims}, MadGraph5 is the chosen software to perform particle collider simulations, in which one million events were produced for both the signal and background events. At the generator level, in order to meet the pre-selection criteria listed in the following subsection, we limit the missing transverse energy $\cancel{\it{E}}_{T}$ to a minimum of 200 GeV as the signatures significantly differ between our signal and backgrounds as seen in Figure \ref{fig:topMET}. The difference in MET affects the results upon building the classifiers and efficiencies, thus by requiring the signatures to be in a similar range we can observe the efficiency in our results in a reasonable range. In addition, MG5 calculates a cross-section value associated to each process generated, also required for our analysis. \\
+As discussed in Section \ref{sec:Sims}, MadGraph5 is the chosen software to perform particle collider simulations, in which one million events were produced for both the signal and background events. At the generator level, in order to meet the pre-selection criteria listed in the following subsection, we limit the missing transverse energy $\cancel{\it{E}}_{T}$ to a minimum of 200 GeV as the signatures significantly differ between our signal and backgrounds as seen in Figure \ref{fig:topMET}. From the histogram, it is evident that the background events have a distribution much closer to zero with a mean of roughly 50 GeV without this requirement. The difference in MET affects the results upon building the classifiers and efficiencies, thus by requiring the signatures to be in a similar range we can observe the background events distributed closer to that of the signal, thus the pushing the efficiency and sensitivity in our results to a reasonable range. In addition, MG5 calculates a cross-section value associated to each process generated, also required for our analysis. \\
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\linewidth]{top-MET.png}
-    \caption{A histogram to depict the variation in generator-level and detector-level simulation in the top quark production $pp \rightarrow t\Bar{t} \rightarrow bW^{-}\Bar{b}W^{+} \rightarrow l^{\pm}\nu_l(\Bar{\nu}_l)q\Bar{q}$.}
+    \includegraphics[width=\linewidth]{top-MET_new.png}
+    \caption{A histogram to depict the variation in generator-level and detector-level simulation in the top quark production $pp \rightarrow t\Bar{t} \rightarrow bW^{-}\Bar{b}W^{+} \rightarrow l^{\pm}\nu_l(\Bar{\nu}_l)q\Bar{q}$, created using MadAnalysis5 \cite{conte2013madanalysis, conte2014designing, dumont2015toward}. In the legend, the terms `GenLvl noCut' refers to the events plotted with the LHE file corresponding to the hard process alone without placing the requirement $\cancel{\it{E}}_{T}>200$ GeV. Thus the lines represented with the term `w/Cut' corresponds to events simulated with this requirement. Furthermore, the detector effects on these events can be seen associated to those with `DetLvl'. By placing the requirement of $\cancel{\it{E}}_{T}>200$ GeV we observe the missing energy for our background shifts closer to the distribution for our signal events. }
     \label{fig:topMET}
 \end{figure}
 
@@ -49,7 +49,7 @@ with an accompanying example diagram given in Figure \ref{fig:sigFeyn}. \\
     \captionof{figure}{Feynman diagram of the leading order background process $pp \rightarrow t \Bar{t} \rightarrow b\Bar{b}l^{+}jj\cancel{\it{E}}_{T} $.}
     \label{fig:bkrdFeyn}
   \end{minipage}
-  %\hfill
+  \hfill
   \begin{minipage}[htbp]{0.45\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{stop_MG5.png}
@@ -59,21 +59,20 @@ with an accompanying example diagram given in Figure \ref{fig:sigFeyn}. \\
 \end{minipage}
 %-------------------------------------------------------------------------%
 \section{Preselection}
-
-During the pre-selection process we require three conditions the data must meet, based on several. 
+Applying existing conditions to searches reduces unwanted information, resulting in the algorithm working harder but allowing it to optimize its search for new physics. This process is known as \textit{pre-selection}, and it is a crucial step in our method. Rather, this process is identical to the cut-flow analysis seen in Section \ref{sec:cut}, where placing certain cuts allows us to reduce the number of events constrained to the signature of interest. During the pre-selection process we require three conditions the data must meet, based on several. 
 \begin{itemize}
     \item $\cancel{\it{E}}_{T}>250$ GeV
     \item Only one charged lepton (No sign discrimination)
-    \item A minimum of one $b$-tagged jet. The highest $b$-tagged jet is considered the only $b$-jet and the rest are considered ordinary jets.\\
+    \item A minimum of one $b$-tagged jet. The $b$-tagged jet with the highest $p_T$ is considered the only $b$-jet with the remainder considered as ordinary jets.\\
 \end{itemize}
 
-Table \ref{tab:benchmarks} depicts the number of events remaining after each pre-selection criteria applied, from left to right. The disparity in the initial events comes from the fact that we require an equal amount of data in the final count in order to have a 50:50 split between the signal and background events in our data. This allows our classifier to be built effectively. In adition, Table \ref{tab:benchmarks} lists the cross-section, $\sigma$, of each process simulated, which will be useful as will be discussed in the next section. \\
+Table \ref{tab:benchmarks} depicts the number of events remaining after each pre-selection criteria applied, from left to right. The disparity in the initial events comes from the fact that we require an equal amount of data in the final count in order to have a 50:50 split between the signal and background events in our data. This allows our classifier to be built effectively. In adition, Table \ref{tab:benchmarks} lists the cross-section, $\sigma$, of each process simulated, which will be needed to evaluate important values that will be discussed in the following section. The cross-sections is shown to increase gradually as the mass difference between the stops and neutralinos become larger, showing that final states with more $\cancel{\it{E}}_{T}$ is less rare, although not by any substantial amount. \\
 
 \begin{table}[htbp]
     \centering
     \begin{tabular}{c|c|c|c|c||c} 
     \toprule
-    Data & Initial & $\cancel{\it{E}}_{T}>250$ GeV & $1l^\pm$ & $\min(1b)$ & Cross-section, $\sigma$ (pb) \\
+    Data & Initial & $\cancel{\it{E}}_{T}>250$ GeV & $1l^\pm$ & $1b$ & Cross-section, $\sigma$ (pb) \\
     \midrule
     \rowcolor{gray!6} Benchmark1 & 776800 & 559371 & 179472 & 101488 & $1.6\times10^{-4} \pm 6.7\times10^{-8}$ \\
     Benchmark2 & 758458 & 611119 & 187179 & 101488 & $4.0\times10^{-4} \pm  5.4\times10^{-7}$ \\
@@ -82,6 +81,6 @@ Table \ref{tab:benchmarks} depicts the number of events remaining after each pre
     \rowcolor{gray!6} Background & $10^6$ & 357273 & 123933 & 101488 & $2.5 \pm 1.3\times10^{-3}$ \\
     \bottomrule
     \end{tabular}
-    \caption{The number of events remaining at each step of the pre-selection process.} 
+    \caption{The number of events remaining at each step of the pre-selection process. Requiring that events satisfy a minimum of 250 GeV for $\cancel{\it{E}}_{T}$, that there is only one charged lepton and one $b$-tagged jet, the number of events significantly differs between simulated signal and background events. Therefore the initial number of events was reduced for the signal events in order to create an equal split between signal and background within each data.} 
     \label{tab:preselection}
 \end{table}
