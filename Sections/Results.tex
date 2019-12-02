@@ -184,32 +184,24 @@ XGBoost has an additional useful feature that calculates the \textit{feature imp
 
 \begin{figure}[htbp]
 \centering
-  \begin{minipage}[htbp]{0.45\textwidth}
+  \begin{minipage}[htbp]{0.49\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{imp1.png}
-    %\captionof{figure}{Feynman diagram of the leading order background process $pp \rightarrow t \Bar{t} \rightarrow b\Bar{b}l^{+}jj\cancel{\it{E}}_{T} $.}
-    \label{fig:imp1}
   \end{minipage}
   \hfill
-  \begin{minipage}[htbp]{0.45\textwidth}
+  \begin{minipage}[htbp]{0.49\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{imp2.png}
-    %\captionof{figure}{Feynman diagram of the leading order signal process $ pp \rightarrow \Tilde{t}\Tilde{t^*} \rightarrow t \Bar{t} \chi^0_1\chi^0_1 \rightarrow b\Bar{b}l^{+}jj\cancel{\it{E}}_{T} $ where the final states are identical to that of the background in Figure \ref{fig:bkrdFeyn}.}
-    \label{fig:imp2}
   \end{minipage}
   \hfill
-  \begin{minipage}[htbp]{0.45\textwidth}
+  \begin{minipage}[htbp]{0.49\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{imp3.png}
-    %\captionof{figure}{Feynman diagram of the leading order background process $pp \rightarrow t \Bar{t} \rightarrow b\Bar{b}l^{+}jj\cancel{\it{E}}_{T} $.}
-    \label{fig:imp3}
   \end{minipage}
   \hfill
-  \begin{minipage}[htbp]{0.45\textwidth}
+  \begin{minipage}[htbp]{0.49\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{imp_in.png}
-    %\captionof{figure}{Feynman diagram of the leading order signal process $ pp \rightarrow \Tilde{t}\Tilde{t^*} \rightarrow t \Bar{t} \chi^0_1\chi^0_1 \rightarrow b\Bar{b}l^{+}jj\cancel{\it{E}}_{T} $ where the final states are identical to that of the background in Figure \ref{fig:bkrdFeyn}.}
-    \label{fig:imp_n}
   \end{minipage}
   \caption{The feature importance for all four benchmark points ordered from top-left to bottom-right. All four classifiers considers $\cancel{\it{E}}_{T}$ the most important feature, followed by the $\phi$ component of $\cancel{\it{E}}_{T}$ and the lepton as well as the lepton's $p_T$, not necessarily in this order. Furthermore the fifth most important variable is $H_T$ opposed to a particular jet's $p_T$. The clustering helps us to undestand the which variables were grouped together when considering a split. (??  Unsure about this explanation as I cannot find a good reference on the internet for it.)}
   \label{fig:imps}
@@ -220,6 +212,105 @@ From the bar-plots shown in Figure \ref{fig:imps}, we notice that the algorithm 
 \section{Data Visualisation using \textit{tourr}}
 
 In this section, I would like to show how data visualisation could be useful in helping understand new physics beyond the SM better. By creating a two-dimensional projection of the data entailing of higher dimensions (i.e. many variables), we can observe the distribution of data points in such a projection. The \textit{tourr} package from R \cite{tourr} is an ideal program for such a task, producing interesting results. The projected tour requires an index to minimize the distance between certain points in a dataset, in which we chose to utilize the \textit{alpha-hull} index. A corresponding basis is generated with each projection, and the algorithm will search through potentially more optimal projections through each iteration. NEED TO EXPLAIN ABOUT ALPHA INDEX A BIT AND SHOW SOME SPLOTS AND TALK ABOUT THE PHYSICS WE CAN INTERPRET FROM IT.
+
+
+\begin{figure}[htbp]
+\centering
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-001.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-013.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper_axis.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-025.png}
+  \end{minipage}
+  \caption{Guided tour of benchmark 4: $\Tilde{t} = 750$ GeV and $\Tilde{\chi}_1^0 = 1$ GeV. }
+  \label{fig:bmIn_tour}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_false-001.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_false-012.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_false_axis.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_false-024.png}
+  \end{minipage}
+  \caption{Guided tour of benchmark 4: $\Tilde{t} = 750$ GeV and $\Tilde{\chi}_1^0 = 1$ GeV. }
+  \label{fig:bmInF_tour}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+\centering
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_proper-001.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_proper-012.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_proper_axis.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_proper-020.png}
+  \end{minipage}
+  \caption{Guided tour of benchmark 4: $\Tilde{t} = 1.25$ TeV and $\Tilde{\chi}_1^0 = 100$ GeV. }
+  \label{fig:bm3_tour}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_false-001.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_false-012.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_false_axis.png}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_false-023.png}
+  \end{minipage}
+  \caption{Guided tour of benchmark 4: $\Tilde{t} = 1.25$ TeV and $\Tilde{\chi}_1^0 = 100$ GeV. }
+  \label{fig:bm3F_tour}
+\end{figure}
+%  \begin{minipage}[htbp]{0.4\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper_highlighted-001.png}
+%  \end{minipage}
+%  \begin{minipage}[htbp]{0.4\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper_highlighted-025.png}
+%  \end{minipage}
 
 
 %  \begin{table}[htbp]

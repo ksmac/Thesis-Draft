@@ -29,7 +29,7 @@ For the background process defined by Equation (\ref{eq:background}), the comman
 \end{lstlisting}
 where a diagram from one of its generated events can be seen in Figure \ref{fig:bkrdFeyn}. \\
 
-Similarly, the process for signal production follows that of Equation (\ref{eq:signal}), in which the command for generating the events is given by
+Similarly, the process for signal\footnote{The parameter card was taken from \url{http://lpsc.in2p3.fr/projects-th/recasting/susy-vs-vlq/ttbarMET/} \cite{kraml2016scalar} under `SUSY-R', only adjusting the masses for stops and neutralinos in our runs.} production follows that of Equation (\ref{eq:signal}), in which the command for generating the events is given by
 \begin{lstlisting}[mathescape = true]
         generate p p > t1 t1$\sim$ ,
         (t1 > t n1, (t > W+ b , W+ > leptonic leptonic)),
