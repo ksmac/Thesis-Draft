@@ -9,19 +9,19 @@
 \section{Performance of the classifiers}
 %-------------------------------------------------------------------------%
 %\subsection{Benchmark 1: \texorpdfstring{$\Tilde{t} = 1.2$}{ } TeV and \texorpdfstring{$\Tilde{\chi}_1^0 = 600$}{ } GeV}
-An initial measure to visually understand how our classifiers have performed, a simple Receiver operating characteristic (ROC) curve can be constructed. A ROC curve shows the distribution of the predicted values given between 0 and 1, as a function of FP rate versus TP rate. This allows us to understand how much error we are willing to accept/reject for a given model, where we can produce histograms to observe where the optimum cut-off may be (see Figures \ref{fig:dist_bm1}-\ref{fig:dist_bm_in}. The ROC curve produced for all four benchmark data is presented in Figure \ref{fig:ROC} showing excellent performance across. As expected, however, the benchmark set corresponding to mass parameters within the exclusion curve (Benchmark4: $m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV) performed the worst amongst the four due to the smaller mass difference between the stops and neutralinos. We also note that the datasets performed better as the mass difference became larger, which is also an expected behavior as the larger mass difference creates more energetic (anti)tops, consequently, more missing energy. This allowed the classifier to pick up such signatures easily, and we suspect that the missing energy's magnitude is the most influential variable the classifier has used when performing its splits. \\
+An initial measure to visually understand how our classifiers have performed, a simple Receiver operating characteristic (ROC) curve can be constructed. A ROC curve shows the distribution of the predicted values given between 0 and 1, as a function of the FP rate versus TP rate. This allows us to understand how much error we are willing to accept/reject for a given model, where we can produce histograms to observe where the optimum cut-off may be (see Figures \ref{fig:dist_bm1}-\ref{fig:dist_bm_in}. The ROC curve produced for all four benchmark data is presented in Figure \ref{fig:ROC} showing excellent performance across. As expected, however, the benchmark set corresponding to mass parameters within the exclusion curve (Benchmark4: $m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV) performed the worst amongst the four due to the smaller mass difference between the stops and neutralinos. We also note that the datasets performed better as the mass difference became larger, which is also an expected behavior as the larger mass difference creates more energetic (anti)tops, consequently, more missing energy. This allowed the classifier to pick up such signatures easily, and we suspect that the missing energy's magnitude is the most influential variable the classifier has used when performing its splits. \\
 
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\linewidth]{ROC_curve.png}
-    \caption{ROC curve for all 4 benchmark points. The forth benchmark corresponding to masses within the exclusion curve performed least well, where the remaining three performed slightly better when the mass difference between the stops and neutralinos become larger.}
+    \caption{ROC curve for all 4 benchmark points. The fourth benchmark corresponding to masses within the exclusion curve performed least well, where the remaining three performed slightly better when the mass difference between the stops and neutralinos become larger.}
     \label{fig:ROC}
 \end{figure} 
 
 Although the area-under-the-curve (AUC) value is given in Figure \ref{fig:ROC}, it only signifies the maximum possible accuracy the classifier is capable of producing, provided the correct threshold, and so does not directly represent the accuracy of our models. The accuracy of our models can be obtained by setting a cut-off to our predictions i.e. a number between 0 and 1. The closer the value is to 1 the lower the accuracy, but deliberately obtaining a high accuracy by setting a smaller value is also counter-intuitive as the SBR for the luminosity-normalized expected events (Equation (\ref{eq:N})) will not be maximized. Through various trials in cut-off values by observing the distribution of the predicted values shown in Figures \ref{fig:dist_bm1}\textemdash\ref{fig:dist_bm_in}, it was determined for all four datasets that 0.75 is the optimal value to satisfy both high accuracy and high SBR. A summary of values obtained for each datasets are provided in Tables \ref{tab:Values1}\textemdash\ref{tab:Values_in}. \\
 
-For the benchmark point with masses $m_{\Tilde{t}} = 1.2$ TeV and $m_{\Tilde{\chi}_1^0} = 600$ GeV, the classifier performed quite well, producing a result of $91.4 \pm 0.2 \%$ accuracy. It is expected that the classifier performed less accurately when dealing with signal events as it correctly identified a smaller portion of true signal events and incorrectly classified more background-like signal events, as seen in Table \ref{tab:Values1}. The number of expected number of signal is significantly less than the expected number of background, producing an AMS value of 0.1 with an SBR of 0.52\%. Both values are very small, signifying that the background overwhelms and it is expected that for hypothesis tests on either signal-discovery or upper-limits cannot be concluded for neither discovery nor exclusion, respectively. \\
+For the benchmark point with masses $m_{\Tilde{t}} = 1.2$ TeV and $m_{\Tilde{\chi}_1^0} = 600$ GeV, the classifier performed quite well, producing a result of $91.4 \pm 0.2 \%$ accuracy. It is expected that the classifier performed less accurately when dealing with signal events as it correctly identified a smaller portion of true signal events and incorrectly classified more background-like signal events, as seen in Table \ref{tab:Values1}. The number of the expected number of signal is significantly less than the expected number of background, producing an AMS value of 0.1 with an SBR of 0.52\%. Both values are very small, signifying that the background overwhelms and it is expected that for hypothesis tests on either signal-discovery or upper-limits can be concluded for neither discovery nor exclusion, respectively. \\
 
 For Benchmarks 2 ($m_{\Tilde{t}} = 1.225$ TeV and $m_{\Tilde{\chi}_1^0} = 400$ GeV) and 3 ($m_{\Tilde{t}} = 1.25$ TeV and $m_{\Tilde{\chi}_1^0} = 100$ GeV), a slight improvement can be seen with the SBR and AMS values, attributed to the larger mass differences between the stops and neutralinos. As noted in previous sections, the larger mass difference produces much more energetic final states, consequently more missing energy, allowing the classifier to distinguish background and signal events better. This relates to the distribution for $\cancel{\it{E}}_{T}$ shown in Figure \ref{fig:topMET} in Section \ref{sec:production}, where the signal events have a wider distribution with a mean centered further away from the background. This is further supported with the distribution plot in Figure \ref{fig:METs}, where we see the distribution become flatter, wider and further away toward higher $\cancel{\it{E}}_{T}$ values as the mass difference between the stops and neutralinos become larger. \\
 
@@ -219,53 +219,70 @@ XGBoost has an additional useful feature that calculates the \textit{feature imp
   \label{fig:imps}
 \end{figure}
 
-From the bar-plots shown in Figure \ref{fig:imps}, we notice that the algorithm had the highest contribution from the variable $\cancel{\it{E}}_{T}$ thus making it the most important. This is to be expected as we know that the neutralinos contribute to $\cancel{\it{E}}_{T}$ but also the SM neutrinos due to the highly energetic top quarks produced in our signal events. The next highest contributors were the $\phi$ components of $\cancel{\it{E}}_{T}$ and the lepton as well as its $p_T$, followed by the hadronic energy $H_T$. These five variables were consistently the top-five contributors to the algorithm and observing the grouping (noted as clusters in the legend), we can infer that the in particular, that the $\phi$ components of $\cancel{\it{E}}_{T}$ and the lepton have some sort of correlation with an occasional contribution from the lepton's $p_T$. We also observe that the $p_T$ of the $b$-jet and the remaining jet with highest $p_T$ (referred to as jet-1 henceforth) occasionally have slight contribution to the algorithm, with the remaining variables considered almost irrelevant consistently.
+From the bar-plots shown in Figure \ref{fig:imps}, we notice that the algorithm had the highest contribution from the variable $\cancel{\it{E}}_{T}$ thus making it the most important. This is to be expected as we know that the neutralinos contribute to $\cancel{\it{E}}_{T}$ but also the SM neutrinos due to the highly energetic top quarks produced in our signal events. The next highest contributors were the $\phi$ components of $\cancel{\it{E}}_{T}$ and the lepton as well as its $p_T$, followed by the hadronic energy $H_T$. These five variables were consistently the top-five contributors to the algorithm and observing the grouping (noted as clusters in the legend), we can infer that the in particular, that the $\phi$ components of $\cancel{\it{E}}_{T}$ and the lepton have some sort of correlation with an occasional contribution from the lepton's $p_T$. We also observe that the $p_T$ of the $b$-jet and the remaining jet with the highest $p_T$ (referred to as jet-1 henceforth) occasionally have a slight contribution to the algorithm, with the remaining variables considered almost irrelevant consistently.
 %-------------------------------------------------------------------------%
 \section{Data Visualisation using \textit{tourr}}
-In this section, I would like to present how data visualisation could be useful in helping understand new physics beyond the SM better. By creating a two-dimensional projection of the data entailing of higher dimensions (i.e. many variables), we can observe the distribution of data points in a given projection. The \textit{tourr} package from R \cite{tourr} is an ideal program for such a task, where the projected tour requires an index to minimize the distance between certain points in a dataset, in which we chose to utilize the \textit{alpha-hull}\footnote{The alpha-hull index was developed by a student who worked with my supervisors in an undergraduate research project.} index. Each projection generated has a corresponding basis in matrx representation, and the algorithm will search through potentially more optimal projections through each iteration. 
+In this section, I would like to present how data visualisation could be useful in helping understand new physics beyond the SM better. By creating a two-dimensional projection of the data entailing of higher dimensions (i.e. many variables), we can observe the distribution of data points in a given projection. The \textit{tourr} package from R \cite{tourr} is an ideal program for such a task, where the projected tour requires an index to minimize the distance between certain points in a dataset, in which we chose to utilize the \textit{alpha-hull}\footnote{The alpha-hull index was developed by a student who worked with my supervisors in an undergraduate research project. It is a form of the convex hull, where a convex set envelopes some points in the data, converging to the smallest set possible.} index. Each projection generated has a corresponding basis and the algorithm searches through potentially more optimal projections in iterations. The complete tour path can then be expressed as a $v\times2$ matrix for the total number of basis created, where $v$ is the number of input variables. \\
 
+From the preceding section, we observed from Figure \ref{fig:imps} that the five most important variables were the energy and $\phi$ components of both the $\cancel{\it{E}}_{T}$ and the charged leptons, and the hadronic energy $H_T$. As the final state of interest included four jets, one of which originated from a $b$-quark, I included the $p_T$ of the $b$-jet and jet-1 as variables worth exploring in our tours. For the tours created in Figures \ref{fig:bmIn_tour}\textemdash\ref{fig:bm3F_tour}, these variables are denoted as follows:
+
+\begin{itemize}
+    \item Missing Transver Energy = MissingET.MET (MET.M)
+    \item Charged lepton $p_T$ = Lepton.PT (L.PT)
+    \item Azimuthal component of MET = MissingET.Phi (MET.P)
+    \item Azimuthal component of charged leptons = Lepton.Phi (Lp.P)
+    \item Hadronic Energy $H_T$ = ScalarHT.HT (SHT)
+    \item $b$-jet $p_T$ = BJet.PT (BJ.)
+    \item $p_T$ of jet-1 = Jet1.PT (J1.)
+\end{itemize}
+
+Two separate tours were created for two of the benchmark sets chosen to be Benchmarks 3 ($m_{\Tilde{t}} = 1.25$ TeV and $m_{\Tilde{\chi}_1^0} = 100$ GeV) and 4 ($m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV). The first tour considered was simply extracting 1/10 of the data with the predicted outcomes (both correctly and incorrectly classified background and signal), highlighting each prediction with different colors. The other tour considered is to perform the task with only the misclassified points extracted from the partitioned set to observe where the classifiers struggled and what properties it may have. For the former, we color the correctly classified signal and background as blue and black, respectively, and the misclassified signal and background as red and green, respectively. The latter tour has the misclassified signal and background as red and blue respectively. \\
+
+We notice from Figures \ref{fig:bmIn_tour} and \ref{fig:bm3_tour}, the most interesting projections seen were in the form of flattened `M' shapes where the background events were distinctly grouped in three along with the azimuthal components of MET and charged leptons. As each entry in our data is scaled to values in $(0,1)$, negative valued entries are closest to the origin meaning that background events tend to have a large $\phi$ in both the negative and positive direction. Since the coverage of $\phi$ is $-\pi \le \phi \le \pi$ within the detector, it suggest that background events prefer to be close to an orthogonal direction to the $x$-axis, almost as though in a small `cone' forming between the lepton and missing energy, to the beam axis with relatively low $\cancel{\it{E}}_{T}$. In contrast, the signal events have a much larger spread in both $\cancel{\it{E}}_{T}$ and both azimuthal components. This implies that such events are detected almost anywhere within the detector except for the $x$-direction orthogonal to the beam, suggesting a much larger `cone' forming between the lepton and missing energy. \\
 
 \begin{figure}[htbp]
 \centering
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-001.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-013.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper_axis.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-025.png}
   \end{minipage}
-  \caption{Guided tour of benchmark 4: $m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV. }
+  \caption{Guided tour of predicted points in  Benchmark 4: $m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV. The signal events are colored in blue and red for correctly and incorrectly classified points, respectively. The remaining black and green points correspond to the correctly and incorrectly classified background events, respectively. We observe a flat `M' shape with the true background events grouped into three different regions along the azimuthal variables.}
   \label{fig:bmIn_tour}
 \end{figure}
 
+So what are the signal-like and background-like signatures that made the classifiers perform poorly? By tracing along the misclassified points from tours created as those in Figures \ref{fig:bmInF_tour} and \ref{fig:bm3F_tour}, we observed that the signal-like events were highly energetic in its final states as expected, with the missing energy ranging from a few hundred GeV to just over 1 TeV. However, we also notice that the $\phi$ range is similar in both signatures, as discussed in the preceding paragraph. We also observed that the energy sum of jets $H_T$ is consistently in the order of 1\textemdash3 TeV, where the $b$-jet and the next highest $p_T$ jet interchanges in which has the higher energy between the two. If the $b$-jet is the more energetic jet, we see a less energetic charged lepton detected for the specific event, whereas a highly energetic $b$-jet corresponds to a less energetic charged lepton detected. This is no surprise as we see energy conserved for the SM top quark decay which is part of our final state, hence, combined with the spread across varying energies for both misclassified events, it is understandable that the classifier could not distinguish these events well. 
+
 \begin{figure}[htbp]
 \centering
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_false-001.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_false-012.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_false_axis.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_false-024.png}
   \end{minipage}
-  \caption{Guided tour of benchmark 4: $m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV. }
+  \caption{Guided tour of misclassified points in Benchmark 4: $m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV. The signal events are in red and background events are in blue. The spread of both signal-like and background-like events make it difficult for the classifier to distinguish them.}
   \label{fig:bmInF_tour}
 \end{figure}
 
@@ -273,47 +290,71 @@ In this section, I would like to present how data visualisation could be useful 
 
 \begin{figure}[htbp]
 \centering
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_proper-001.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_proper-012.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_proper_axis.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_proper-020.png}
   \end{minipage}
-  \caption{Guided tour of benchmark 4: $m_{\Tilde{t}} = 1.25$ TeV and $m_{\Tilde{\chi}_1^0} = 100$ GeV. }
+  \caption{Guided tour of predicted points in Benchmark 3: $m_{\Tilde{t}} = 1.25$ TeV and $m_{\Tilde{\chi}_1^0} = 100$ GeV. The signal events are colored in blue and red for correctly and incorrectly classified points, respectively. The remaining black and green points correspond to the correctly and incorrectly classified background events, respectively. We observe a flat `M' shape with the true background events grouped into three different regions along the azimuthal variables, identical to that of Figure \ref{fig:bmIn_tour}.}
   \label{fig:bm3_tour}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_false-001.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_false-012.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_false_axis.png}
   \end{minipage}
-  \begin{minipage}[htbp]{0.49\textwidth}
+  \begin{minipage}[htbp]{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth, keepaspectratio=true]{bm3_false-023.png}
   \end{minipage}
-  \caption{Guided tour of benchmark 4: $m_{\Tilde{t}} = 1.25$ TeV and $m_{\Tilde{\chi}_1^0} = 100$ GeV. }
+  \caption{Guided tour of misclassified points in Benchmark 3: $m_{\Tilde{t}} = 1.25$ TeV and $m_{\Tilde{\chi}_1^0} = 100$ GeV. The signal events are in red and background events are in blue. There is a similar distribution in the signal and background events, and due to the large sampling difference between the two signatures (as shown in Table \ref{tab:Values3}, it is difficult in this particular case to observe distinct patterns, unlike Figure \ref{fig:bmInF_tour}.}
   \label{fig:bm3F_tour}
 \end{figure}
+
+%\begin{figure}[htbp]
+%\centering
+%  \centerline{\begin{minipage}[htbp]{0.5\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper_axis.png}
+%  \end{minipage}}
+%  \hfill\break
+%  \begin{minipage}[htbp]{0.3\textwidth}
+%    \centering
+%%    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-001.png}
+%  \end{minipage}
+%  \begin{minipage}[htbp]{0.3\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-013.png}
+%  \end{minipage}
+%  \begin{minipage}[htbp]{0.3\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper-025.png}
+%  \end{minipage}
+%  \caption{Guided tour of benchmark 4: $m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV. }
+%  \label{fig:bmIn_tour}
+%\end{figure}
+
 %  \begin{minipage}[htbp]{0.4\textwidth}
 %    \centering
 %    \includegraphics[width=\linewidth, keepaspectratio=true]{bm_I_proper_highlighted-001.png}
@@ -324,29 +365,29 @@ In this section, I would like to present how data visualisation could be useful 
 %  \end{minipage}
 
 
-%  \begin{table}[htbp]
-%        \centering
-%        \begin{tabular}{c||c|c|c|c}
-%        \toprule
-%        &\multicolumn{1}{c|}{\bfseries Benchmark1}  &
-%        \multicolumn{1}{c|}{\bfseries Benchmark2}  &
-%        \multicolumn{1}{c|}{\bfseries Benchmark3} &
-%        \multicolumn{1}{c}{\bfseries Benchmark4} \\
-%        \midrule
-        %----------------------------------%
-%        \textbf{Metric} & Proportion & Proportion & Proportion & Proportion \\
-%        \midrule
-%        \rowcolor{gray!6} TP & $42.0 \%$ & $43.8 \%$ & $44.9 \%$ & $39.3 \%$ \\
-%        TN & $49.4 \%$ & $49.5 \%$ & $49.4 \%$ & $49.5 \%$ \\
-%        \rowcolor{gray!6} FP & $0.6 \%$ & $0.5 \%$ & $0.6 \%$ & $0.5 \%$\\
-%      FN & $8.0 \%$ & $6.2 \%$ & $5.1 \%$ & $10.7 \%$ \\
-%        \rowcolor{gray!6} Accuracy & $91.3 \pm 0.2 \%$ & $93.3 \pm 0.2 \%$ & $94.2 \pm 0.2 \%$ & $88.8 \pm 0.2 \%$ \\
-%        \midrule
-%        $b$ & $403$ & $368$ & $371$ & $382$ \\
-%        \rowcolor{gray!6} $s$ & $2$ & $46$ & $11$ & $53$ \\
-%        SBR & $0.5\%$ & $12.5\%$ & $3.0\%$ & $13.9\%$\\
-%        \rowcolor{gray!6} AMS & $0.098$ & $2.32$ & $0.56$ & $2.62$ \\
-%        \bottomrule
-%        \end{tabular}
-%        \caption*{Proportion of important values obtained in the four benchmark parameters.}
-%    \end{table}
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{c||c|c|c|c|c|c|c}
+        \toprule
+        %&\multicolumn{1}{c|}{\bfseries Benchmark1}  &
+        %\multicolumn{1}{c|}{\bfseries Benchmark2}  &
+        %\multicolumn{1}{c|}{\bfseries Benchmark3} &
+        %\multicolumn{1}{c}{\bfseries Benchmark4} \\
+        %\midrule
+        %\multirow{2}{1.4cm}{squarks}$\cancel{\it{E}}_{T}$
+    %----------------------------------%
+        \textbf{Signature} & $\cancel{\it{E}}_{T}$ & $\phi(\cancel{\it{E}}_{T})$ & $p_T(l)$ & $\phi(l)$ & $H_T$ & $p_T(b)$ & $p_T(j1)$ \\
+        \midrule
+        \multirow{3.75}{*}{Signal-like} & \cellcolor{gray!6}\\
+        \\
+        &\cellcolor{gray!6}\\
+        \\
+        \midrule
+        \multirow{3.75}{*}{Background-like}&\cellcolor{gray!6}  \\
+        \\
+        &\cellcolor{gray!6}\\
+        \\
+        \bottomrule
+    \end{tabular}
+    \caption{ Example values, in GeV, for signal- and background-like signatures in the misclassified points for Benchmark4: $m_{\Tilde{t}} = 750$ GeV and $m_{\Tilde{\chi}_1^0} = 1$ GeV.}
+\end{table}

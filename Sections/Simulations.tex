@@ -1,8 +1,8 @@
-%In this section, the method chosen to perform simulations for both the top and stop decays are shown. In addition, the preparation of data is explained in order to jusitfy the usage of ML and their results.\\
+%In this section, the method chosen to perform simulations for both the top and stop decays are shown. In addition, the preparation of data is explained to justify the usage of ML and their results.\\
 %-------------------------------------------------------------------------%
 \section{Background and Signal of interest}
 \label{sec:production}
-As discussed in Section \ref{sec:Sims}, MadGraph5 is the chosen software to perform particle collider simulations, in which one million events were produced for both the signal and background events. At the generator level, in order to meet the pre-selection criteria listed in the following subsection, we limit the missing transverse energy $\cancel{\it{E}}_{T}$ to a minimum of 200 GeV as the signatures significantly differ between our signal and backgrounds as seen in Figure \ref{fig:topMET}. From the histogram, it is evident that the background events have a distribution much closer to zero with a mean of roughly 50 GeV without this requirement. The difference in MET affects the results upon building the classifiers and efficiencies, thus by requiring the signatures to be in a similar range we can observe the background events distributed closer to that of the signal, thus the pushing the efficiency and sensitivity in our results to a reasonable range. In addition, MG5 calculates a cross-section value associated to each process generated, also required for our analysis. \\
+As discussed in Section \ref{sec:Sims}, MadGraph5 is the chosen software to perform particle collider simulations, in which one million events were produced for both the signal and background events. At the generator level, to meet the pre-selection criteria listed in the following subsection, we limit the missing transverse energy $\cancel{\it{E}}_{T}$ to a minimum of 200 GeV as the signatures significantly differ between our signal and backgrounds as seen in Figure \ref{fig:topMET}. From the histogram, it is evident that the background events have a distribution much closer to zero with a mean of roughly 50 GeV without this requirement. The difference in MET affects the results upon building the classifiers and efficiencies, thus by requiring the signatures to be in a similar range, we can observe the background events distributed closer to that of the signal, thus pushing the efficiency and sensitivity in our results to a reasonable range. In addition, MG5 calculates a cross-section value associated with each process generated, also required for our analysis. \\
 
 \begin{figure}[htbp]
     \centering
@@ -11,7 +11,7 @@ As discussed in Section \ref{sec:Sims}, MadGraph5 is the chosen software to perf
     \label{fig:topMET}
 \end{figure}
 
-Since the decay process involves both leptonic and hadronic particles as seen in Figure \ref{fig:topdecay}, the following were defined in order to make the simulation complete. \\
+Since the decay process involves both leptonic and hadronic particles as seen in Figure \ref{fig:topdecay}, the following were defined to make the simulation complete. \\
 
 \begin{lstlisting}[mathescape = true]
         define leptonic = l+ l- ta+ ta- vl vl$\sim$
@@ -67,7 +67,7 @@ Applying existing conditions to searches reduces unwanted information, resulting
     \item A minimum of one $b$-tagged jet. The $b$-tagged jet with the highest $p_T$ is considered the only $b$-jet with the remainder considered as ordinary jets.\\
 \end{itemize}
 
-Table \ref{tab:benchmarks} depicts the number of events remaining after each pre-selection criteria applied, from left to right. The disparity in the initial events comes from the fact that we require an equal amount of data in the final count in order to have a 50:50 split between the signal and background events in our data. This allows our classifier to be built effectively. In adition, Table \ref{tab:benchmarks} lists the cross-section, $\sigma$, of each process simulated, which will be needed to evaluate important values that will be discussed in the following section. The cross-sections is shown to increase gradually as the mass difference between the stops and neutralinos become larger, showing that final states with more $\cancel{\it{E}}_{T}$ is less rare, although not by any substantial amount. \\
+Table \ref{tab:benchmarks} depicts the number of events remaining after each pre-selection criteria applied, from left to right. The disparity in the initial events comes from the fact that we require an equal amount of data in the final count to have a 50:50 split between the signal and background events in our data. This allows our classifier to be built effectively. In addition, Table \ref{tab:benchmarks} lists the cross-section, $\sigma$, of each process simulated, which will be needed to evaluate important values that will be discussed in the following section. The cross-sections are shown to increase gradually as the mass difference between the stops and neutralinos becomes larger, showing that final states with more $\cancel{\it{E}}_{T}$ is less rare, although not by any substantial amount. \\
 
 \begin{table}[htbp]
     \centering
