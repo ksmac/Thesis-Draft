@@ -46,6 +46,7 @@
 
 \makeatletter
 \renewcommand{\DOCH}{%
+    \vspace{-2cm}
 	\color{ForestGreen}\mghrulefill{3\RW}\par\nobreak
 	\vskip -0.5\baselineskip
 	\mghrulefill{\RW}\par\nobreak
@@ -62,56 +63,77 @@
 				\centering
 
 				%\vspace*{\stretch{1}}
-				{\Large\fontfamily{pbk}\selectfont Signal and background discrimination in the top squark production with   $\text{1\textit{l}} + \cancel{\it{E}}_{T} $ final states using Machine Learning and Data Visualisation \par}
+				{\Large\fontfamily{pbk}\selectfont Signal and background discrimination in the top squark production with   $\text{1\textit{l}} + \cancel{\it{E}}_{T} $ final states using XGBoost and Data Visualisation \par}
 				\vspace{1.0cm}
 			%$ \Tilde{t}\Tilde{t^*} \rightarrow t \Bar{t} \Tilde{\chi^0_1}\Tilde{\chi^0_1} \rightarrow b\Bar{b}l^{+}jj\cancel{\it{E}}_{T} $	     
-			    \includegraphics[width=0.6\textwidth]{title.png}\par\vspace{1cm}
+			    \includegraphics[width=0.5\textwidth]{title.png}\par\vspace{0.5cm}
 				%\vspace{1cm}
-				{\Large\itshape Kenji Sato Macfarlane\\}
+				{\Large A thesis presented for the Bachelor of Science (Honours) in the \par School of Physics and Astronomy, Monash University}\\
+				\vspace{0.5cm}
+				{\large\itshape Kenji Sato Macfarlane\\}
 				\vfill
 				Supervised by:\par
 				Dr. Ursula Laa \par 
 				Co-supervised by:\par
 				Professor German Valencia \\
 				
-				\vfill
-				\includegraphics[width=0.175\textwidth]{monashlogo.png}\par\vspace{0.5cm}
+				\vspace{0.5cm}
+				
+			
+			\includegraphics[width=0.15\textwidth]{monashlogo.png}\par\vspace{0.25cm}
 				
 				{\large \today\par}
 
 \end{titlepage}
 %-------------------------------------------------------------------------%
-%\thispagestyle{empty}
-%\begin{center}
-%    \vspace*{\stretch{1}}
-%    \textit{I would like to dedicate this thesis to my loving family and parents, especially to my father who is sadly no longer with us.}
-%    \vspace*{\stretch{1}}
-%\end{center}
-%\clearpage
 
+\begin{abstract}
+\thispagestyle{plain}
 \pagenumbering{roman}
 \setcounter{page}{1}
-\begin{center}
-    \vspace*{\stretch{1}}
-    \section*{\centering \Huge Acknowledgement}
-    I would like to thank my supervisors Ursula and German for taking me on as their student and giving me guidance throughout the year.
-    \vspace*{\stretch{1}}
-\end{center}
-\clearpage
-
-
-%\begin{center}
-%    \vspace*{\stretch{1}}
-%    \section*{\centering \Huge Abstract}
-%    \noindent 
-%    \vspace*{\stretch{1}}
-%\end{center}
-\begin{abstract}
-    \noindent The Minimal Supersymmetric Standard Model serves as an extension to the Standard Model in which we observe the simplified model for the top squark decaying into a topquark-neutralino pair: $pp \rightarrow \Tilde{t}\Tilde{t^*} \rightarrow t \Bar{t} \Tilde{\chi^0_1}\Tilde{\chi^0_1} \rightarrow b\Bar{b}jjl\cancel{\it{E}}_{T}$. We simulated the process at four different mass parameters for the top squark and neutralino masses and performed statistical analysis including machine learning, in which we observed low AMS values of up to 2.8. Visualising the data in a guided tour, we observe that the $\cancel{\it{E}}_{T}$, the $\phi$ component of the $\cancel{\it{E}}_{T}$ and charged lepton, the $p_T$ of the lepton and the hadronic energy $H_T$ had strong contributions to the result.
+    \noindent The Standard Model of particle physics well-describes the fundamental particles and their interactions, however, it fails to provide solutions to problems such as dark matter. Supersymmetric extensions to the Standard Model is one attempt to explain physics beyond the Standard Model, with experimental efforts for searches posing many difficulties. We studied the signature of the simplified model for the top squark decay occurring in supersymmetric extensions to the Standard Model; $pp \rightarrow \Tilde{t}\Tilde{t^*} \rightarrow t \Bar{t} \Tilde{\chi^0_1}\Tilde{\chi^0_1} \rightarrow b\Bar{b}jjl\cancel{\it{E}}_{T}$. To study the signature, we simulated the process and used xgboost to discriminate the top quark decays to the signal. We then visualise the data in a new approach using a guided tour, a form of data projection, to study the signature of the process. We found that, given the obvious difference in missing energy, the difference in the azimuthal component of the detected charged lepton and the measured missing energy are all important factors in separating the signatures of the top squarks to the top quark. \\
+    
+    \noindent\textbf{Cover figure:} A projection of one of the simulated data given by a guided tour.
+    
+    
+    %We performed a statistical analysis including machine learning, in which we observed low AMS values of up to 2.8. Visualising the data in a guided tour, we observe that the $\cancel{\it{E}}_{T}$, the $\phi$ component of the $\cancel{\it{E}}_{T}$ and charged lepton, the $p_T$ of the lepton and the hadronic energy $H_T$ had strong contributions to the result.
 \end{abstract}
 \clearpage
 
+\pagenumbering{roman}
+\setcounter{page}{2}
+\vspace*{8cm}
+\subsection*{\centering\textit{Dedication}}
+\textit{This work is dedicated to the memory of my father, James Macfarlane, who has inspired me to pursue knowledge, igniting my passion for science, taught me how to be a good person, and always believed in my ability and efforts to succeed in whatever I chose to do. You are gone but your belief in me has made this journey possible. Thank you for your love and support, Dad.} \\
+
+\centerline{\textit{}} 
+\newpage
+
+\vspace*{4cm}
+\section*{Acknowledgements}
+\thispagestyle{plain}
+
+I would like to thank; \\
+
+\noindent Dr. Ursula Laa and Professor German Valenica for taking me on as their student and giving me guidance throughout the year with many valuable discussions and feedback. Without their help, I certainly wouldn't have been able to get through and enjoy working on this project. \\
+
+\noindent Professor Di Cook of the Department of Econometrics and Business Statistics for her help in understanding the use of machine learning, statistical techniques, and data visualisation for high-dimensional data. \\
+
+\noindent The Monash HEP group for encouraging us Honours students and providing us with a platform to learn particle physics not limited to our research area. \\
+
+\noindent My fellow Honours cohort for going through this battlefield together, supporting each other through the late nights with many ideas and laughter.  \\
+
+\noindent My friends for being supportive and the good times that helped me maintain sanity. I would also like to thank the Macfarlane family for being understanding in my desire to do Honours, and providing support when times were most difficult. 
+
+
+
+
+
+\clearpage
 %-------------------------------------------------------------------------%
+\pagenumbering{roman}
+\setcounter{page}{4}
+
 \makeatletter
 \renewcommand\tableofcontents{%
     \if@twocolumn
@@ -119,16 +141,18 @@
     \else
       \@restonecolfalse
     \fi
-   \newgeometry{top=1.8cm, bottom=1.8cm, left=2cm, right=2cm}
+   \newgeometry{top=0.6cm, bottom=2.5cm, left=2cm, right=2cm}
     \chapter*{\contentsname
         \@mkboth{%
            \MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \vspace{-2cm}
     \@starttoc{toc}%
     \if@restonecol\twocolumn\fi
     \restoregeometry
     }
 \makeatother
 
+\pagestyle{empty}
 \tableofcontents
 \clearpage
 
@@ -185,7 +209,7 @@
 \input{Sections/Chosen_Method.tex}
 
 %-------------------------------------------------------------------------%
-\chapter{Observing the physics of our models}
+\chapter{Observing the physics within our classifiers}
 \label{chap:7}
 %\section{Results}
 \input{Sections/Results.tex}
